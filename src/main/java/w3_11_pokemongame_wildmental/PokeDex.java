@@ -16,17 +16,17 @@ public class PokeDex {
             pokemonByCategory.put(category, new HashMap<>());
         }
         // 아래에 더미데이터 생성 (매 객체 생성 시 해당 객체로 pokemonByName, pokemonByCategory 둘 다 업데이트 해야 함)
-        Pokemon p1 = new Pokemon();
-        Pokemon p2 = new Pokemon();
-        Pokemon p3 = new Pokemon();
-        // 위 변수들은 리스트로 변경,
-        // 아래 구문들을 반복문으로 변경
-        pokemonByName.put("1", p1);
-        pokemonByCategory.get(PokeCategory.WATER).put(p1.getPokemonName(), p1);
-        pokemonByName.put("2", p2);
-        pokemonByCategory.get(PokeCategory.WATER).put(p2.getPokemonName(), p2);
-        pokemonByName.put("3", p3);
-        pokemonByCategory.get(PokeCategory.WATER).put(p3.getPokemonName(), p3);
+        Pokemon[] dexPokemonArray = {
+            new Pokemon("삐삐", 10, PokeDex.PokeCategory.MOON),
+            new Pokemon("푸린", 10, PokeDex.PokeCategory.MOON),
+            new FlyPokemon("팔색조", 10, PokeDex.PokeCategory.LEGENDARY)
+        };
+        for (Pokemon dexPokemon : dexPokemonArray) {
+            pokemonByName
+                .put(dexPokemon.getPokemonName(), dexPokemon);
+            pokemonByCategory.get(dexPokemon.getPokeCategory())
+                .put(dexPokemon.getPokemonName(), dexPokemon);
+        }
     }
 
     public enum PokeCategory {
