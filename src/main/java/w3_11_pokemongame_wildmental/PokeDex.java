@@ -30,7 +30,10 @@ public class PokeDex {
     }
 
     public enum PokeCategory {
-        WATER, FIRE, EARTH, SKY, LEGENDARY, MYSTIC, NORMAL, ELECTRIC
+        NORMAL,
+        WATER, FIRE, EARTH, ELECTRIC,
+        SKY, MOON,
+        LEGENDARY, MYSTIC
     }
 
     public static Pokemon searchPokemon(String name) {

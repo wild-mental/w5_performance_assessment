@@ -5,13 +5,9 @@ import lombok.Getter;
 @Getter
 public class Pokemon implements IPokemon {
     private String pokemonName;
-    // final private String pokemonName;
-    //
-    //    public Pokemon(String pokemonName) {
-    //        this.pokemonName = pokemonName;
-    //    }
     private String customName;
     private int HP;
+    private PokeDex.PokeCategory pokeCategory;
 
     @Override
     public void attack(Pokemon tgPokemon) {

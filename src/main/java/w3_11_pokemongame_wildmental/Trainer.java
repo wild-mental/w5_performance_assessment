@@ -81,7 +81,9 @@ public class Trainer implements ITrainer {
         for (Pokemon pokemon: this.getCapturedPokemonList()) {
             if (pokemon instanceof IOceanCrossable) {
                 ((IOceanCrossable) pokemon).crossOcean(tgCity);
+                return;
             }
         }
+        System.out.println("소지 포켓몬 중 바다 횡단이 가능한 포켓몬이 없습니다");
     }
 }

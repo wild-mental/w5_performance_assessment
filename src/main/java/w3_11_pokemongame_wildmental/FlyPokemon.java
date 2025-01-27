@@ -6,7 +6,7 @@ import lombok.Getter;
 public class FlyPokemon extends Pokemon implements IFlyable {
     @Override
     public void fly(String tgCity) {
-
+        System.out.println("Flying to: " + tgCity);
     }
 
     @Override

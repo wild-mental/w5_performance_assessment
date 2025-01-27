@@ -6,7 +6,7 @@ import lombok.Getter;
 public class SurfPokemon extends Pokemon implements ISurfable {
     @Override
     public void surf(String tgCity) {
-
+        System.out.println("Surfing to: " + tgCity);
     }
 
     @Override
