@@ -6,9 +6,24 @@ import java.util.*;
 
 @Getter
 public class Trainer implements ITrainer {
+    String name;
     List<Pokemon> capturedPokemonList = new ArrayList<>();
     Map<String, Pokemon> capturedPokemonByName = new HashMap<>();
     Scanner inputReader = new Scanner(System.in);
+    PokeTown currentLocation;
+
+    public Trainer(String name, PokeTown currentLocation) {
+        this.name = name;
+        this.currentLocation = currentLocation;
+    }
+
+    public void addPokemon(Pokemon pokemon) {
+        capturedPokemonList.add(pokemon);
+    }
+
+    public void addPokemon(Pokemon[] pokemon) {
+        capturedPokemonList.addAll(Arrays.asList(pokemon));
+    }
 
     @Override
     public void hunt(Pokemon wildPokemon) {
