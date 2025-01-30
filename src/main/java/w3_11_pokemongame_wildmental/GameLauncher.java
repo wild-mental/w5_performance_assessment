@@ -13,11 +13,11 @@ public class GameLauncher {
             "달맞이동산", "달포켓몬들의 성지입니다.", false,
             (Trainer trainer) -> {
                 System.out.println("달맞이 동산에 오신 것을 환영합니다.");
-                IntStream.range(0, trainer.capturedPokemonList.size()).filter(
-                    i -> trainer.capturedPokemonList.get(i).getPokeCategory() == PokeDex.PokeCategory.MOON
-                ).forEach(
-                    i -> trainer.capturedPokemonList.set(i, trainer.capturedPokemonList.get(i).evolve())
-                );
+                for (int i = 0; i < trainer.capturedPokemonList.size(); i++) {
+                    if (trainer.capturedPokemonList.get(i).getPokeCategory() == PokeDex.PokeCategory.MOON) {
+                        trainer.capturedPokemonList.set(i, trainer.capturedPokemonList.get(i).evolve());
+                    }
+                }
             }
         );
         // 1-2. 트레이너 (트레이드 주체 및 대상)
