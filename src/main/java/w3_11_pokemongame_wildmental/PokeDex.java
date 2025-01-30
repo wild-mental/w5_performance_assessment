@@ -1,6 +1,5 @@
 package w3_11_pokemongame_wildmental;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +9,7 @@ public class PokeDex {
     static Map<String, EvolvedPokemon> evolvedPokemonByName = new HashMap<>();
     static Map<PokeCategory, Map<String, Pokemon>> pokemonByCategory = new HashMap<>();
     static Map<String, String> evolveToPokemon = new HashMap<>();
+    static Map<String, String> transcendToPokemon = new HashMap<>();
     static Map<String, MysticPokemon.IMysticActionable> mysticAction = new HashMap<>();
 
     static {
@@ -27,7 +27,9 @@ public class PokeDex {
             new FlyPokemon("리자몽", 10, PokeCategory.FIRE),
             new SurfPokemon("거북왕", 10, PokeCategory.WATER),
             new MysticPokemon("근육몬", 10, PokeCategory.MYSTIC),
-            new EvolvedPokemon("괴력몬", 100, PokeCategory.NORMAL)
+            new EvolvedPokemon("괴력몬", 100, PokeCategory.NORMAL),
+            new MysticPokemon("폴리곤", 10, PokeDex.PokeCategory.MYSTIC),
+            LegendPokemon.getLegendPokemonForDex("전설의 폴리곤", 10, PokeCategory.LEGENDARY)
         };
         for (Pokemon dexPokemon : dexPokemonArray) {
             pokemonByName
@@ -41,6 +43,8 @@ public class PokeDex {
         evolveToPokemon.put("삐삐", "픽시");
         evolveToPokemon.put("푸린", "푸크린");
         evolveToPokemon.put("근육몬", "괴력몬");
+
+        transcendToPokemon.put("폴리곤", "전설의 폴리곤");
 
         // mysticAction 초기화
         mysticAction.put("근육몬", MysticPokemon::evolve);

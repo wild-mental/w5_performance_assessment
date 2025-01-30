@@ -8,6 +8,7 @@ import lombok.ToString;
 @ToString
 public class Pokemon implements IPokemon {
     private String pokemonName;
+    @Setter
     private String customName;
     private int HP;
     @Setter

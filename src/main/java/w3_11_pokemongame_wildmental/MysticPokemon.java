@@ -46,9 +46,16 @@ public class MysticPokemon extends Pokemon {
         System.out.println("== Target Value for Mystic Action is: " + mysticDiceFactor + " ==");
         System.out.println("== Dice Value for Mystic Action is: " + diceVal + " ==");
         if (mysticDiceFactor == diceVal) {
-            this.setPokeCategory(PokeDex.PokeCategory.LEGENDARY);
-            System.out.println("Your Mystic Pokemon " + this.getPokemonName() + " is now legendary");
-            return this;
+            // this.setPokeCategory(PokeDex.PokeCategory.LEGENDARY);
+            // System.out.println("Your Mystic Pokemon " + this.getPokemonName() + " is now legendary");
+            // return this;
+
+            String transcendTo = PokeDex.transcendToPokemon.get("폴리곤");
+            LegendPokemon transcended = LegendPokemon.getLegend(transcendTo, this.getCustomName());
+            if (transcended != null) {
+                System.out.println("Your Mystic Pokemon " + this.getPokemonName() + " is now legendary");
+                return transcended;
+            }
         }
         System.out.println("Your Mystic Pokemon " + this.getPokemonName() + " didn't change");
         return this;

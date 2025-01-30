@@ -113,18 +113,18 @@ public class Trainer implements ITrainer {
         Pokemon tgPokemon = tgTrainer.capturedPokemonList.get(choiceTg);
 
         // 2. 선택 확인
-        System.out.println(
-            "Are you sure to trade your pokemon \n\t" +
-            this.capturedPokemonList.get(choiceMine) +
-            "\nwith \n\t" +
-            tgTrainer.capturedPokemonList.get(choiceTg) + "\nfor sure? (y/n)"
-        );
-
-        // 3. 트레이드 수행
-        if (!inputReader.next().equals("y")) {
-            System.out.println("== Trade cancelled ==");
-            return;
-        }
+//        System.out.println(
+//            "Are you sure to trade your pokemon \n\t" +
+//            this.capturedPokemonList.get(choiceMine) +
+//            "\nwith \n\t" +
+//            tgTrainer.capturedPokemonList.get(choiceTg) + "\nfor sure? (y/n)"
+//        );
+//
+//        // 3. 트레이드 수행
+//        if (!inputReader.next().equals("y")) {
+//            System.out.println("== Trade cancelled ==");
+//            return;
+//        }
         tgTrainer.capturedPokemonList.set(choiceTg, myPokemon);
         this.capturedPokemonList.set(choiceMine, tgPokemon);
         // 4. 특수 이벤트 트리거
