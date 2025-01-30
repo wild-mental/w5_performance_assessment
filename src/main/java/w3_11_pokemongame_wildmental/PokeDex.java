@@ -7,7 +7,9 @@ import java.util.Map;
 public class PokeDex {
     // 포켓몬 정보 관리할 데이터 타입 필드 추가
     static Map<String, Pokemon> pokemonByName = new HashMap<>();
+    static Map<String, EvolvedPokemon> evolvedPokemonByName = new HashMap<>();
     static Map<PokeCategory, Map<String, Pokemon>> pokemonByCategory = new HashMap<>();
+    static Map<String, String> evolveToPokemon = new HashMap<>();
 
     static {
         // 3. 포켓몬 사전 더미데이터 생성
@@ -19,14 +21,22 @@ public class PokeDex {
         Pokemon[] dexPokemonArray = {
             new Pokemon("삐삐", 10, PokeDex.PokeCategory.MOON),
             new Pokemon("푸린", 10, PokeDex.PokeCategory.MOON),
-            new FlyPokemon("팔색조", 10, PokeDex.PokeCategory.LEGENDARY)
+            new EvolvedPokemon("픽시", 100, PokeDex.PokeCategory.MOON),
+            new EvolvedPokemon("푸크린", 100, PokeDex.PokeCategory.MOON),
+            new FlyPokemon("리자몽", 10, PokeDex.PokeCategory.FIRE),
+            new SurfPokemon("거북왕", 10, PokeDex.PokeCategory.WATER)
         };
         for (Pokemon dexPokemon : dexPokemonArray) {
             pokemonByName
                 .put(dexPokemon.getPokemonName(), dexPokemon);
             pokemonByCategory.get(dexPokemon.getPokeCategory())
                 .put(dexPokemon.getPokemonName(), dexPokemon);
+            if (dexPokemon instanceof EvolvedPokemon) {
+                evolvedPokemonByName.put(dexPokemon.getPokemonName(), (EvolvedPokemon) dexPokemon);
+            }
         }
+        evolveToPokemon.put("삐삐", "픽시");
+        evolveToPokemon.put("푸린", "푸크린");
     }
 
     public enum PokeCategory {

@@ -109,6 +109,9 @@ public class Trainer implements ITrainer {
     public void walk(PokeTown toTown) {
         this.currentLocation = toTown;
         System.out.println("Walking to: " + toTown.getName());
+        if (toTown.getTownEvent()!=null) {
+            toTown.getTownEvent().triggerTownEvent(this);
+        }
     }
 
     public void crossOcean(String tgCity) {
@@ -125,6 +128,9 @@ public class Trainer implements ITrainer {
         for (Pokemon pokemon: this.getCapturedPokemonList()) {
             if (pokemon instanceof IOceanCrossable) {
                 ((IOceanCrossable) pokemon).crossOcean(toTown);
+                if (toTown.getTownEvent()!=null) {
+                    toTown.getTownEvent().triggerTownEvent(this);
+                }
                 currentLocation = toTown;
                 return;
             }
