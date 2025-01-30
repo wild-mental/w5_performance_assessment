@@ -92,10 +92,40 @@ public class Trainer implements ITrainer {
         return PokeDex.searchPokemon(category);
     }
 
+    @Override
+    public void townMove(PokeTown toTown) {
+        if (currentLocation.equals(toTown)) {
+            System.out.println("현재 위치한 마을입니다: " + currentLocation.getName());
+            return;
+        }
+        if (toTown.isWalkable()) {
+            walk(toTown);
+        } else {
+            crossOcean(toTown);
+        }
+    }
+
+    @Override
+    public void walk(PokeTown toTown) {
+        this.currentLocation = toTown;
+        System.out.println("Walking to: " + toTown.getName());
+    }
+
     public void crossOcean(String tgCity) {
         for (Pokemon pokemon: this.getCapturedPokemonList()) {
             if (pokemon instanceof IOceanCrossable) {
                 ((IOceanCrossable) pokemon).crossOcean(tgCity);
+                return;
+            }
+        }
+        System.out.println("소지 포켓몬 중 바다 횡단이 가능한 포켓몬이 없습니다");
+    }
+
+    public void crossOcean(PokeTown toTown) {
+        for (Pokemon pokemon: this.getCapturedPokemonList()) {
+            if (pokemon instanceof IOceanCrossable) {
+                ((IOceanCrossable) pokemon).crossOcean(toTown);
+                currentLocation = toTown;
                 return;
             }
         }
