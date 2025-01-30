@@ -78,7 +78,7 @@ public class Trainer implements ITrainer {
     }
 
     @Override
-    public void battle(ITrainer enemyTrainer) {
+    public void battle(Trainer enemyTrainer) {
         //
     }
 
@@ -90,6 +90,57 @@ public class Trainer implements ITrainer {
     @Override
     public Map<String, Pokemon> searchDex(PokeDex.PokeCategory category) {
         return PokeDex.searchPokemon(category);
+    }
+
+    @Override
+    public void trade(Trainer tgTrainer) {
+        // 1. 포켓몬 선택
+        System.out.println("-- Your Pokemon List --");
+        for (int i = 0; i < this.capturedPokemonList.size(); i++) {
+            System.out.println(i + ": " + this.capturedPokemonList.get(i));
+        }
+        System.out.println("-----------------------");
+        System.out.println("choose your pokemon to trade: ");
+        int choiceMine = inputReader.nextInt();
+        Pokemon myPokemon = this.capturedPokemonList.get(choiceMine);
+        System.out.println("-- Target Pokemon List --");
+        for (int i = 0; i < tgTrainer.capturedPokemonList.size(); i++) {
+            System.out.println(i + ": " + tgTrainer.capturedPokemonList.get(i));
+        }
+        System.out.println("------------------------");
+        System.out.println("choose target pokemon to trade: ");
+        int choiceTg = inputReader.nextInt();
+        Pokemon tgPokemon = tgTrainer.capturedPokemonList.get(choiceTg);
+
+        // 2. 선택 확인
+        System.out.println(
+            "Are you sure to trade your pokemon \n\t" +
+            this.capturedPokemonList.get(choiceMine) +
+            "\nwith \n\t" +
+            tgTrainer.capturedPokemonList.get(choiceTg) + "\nfor sure? (y/n)"
+        );
+
+        // 3. 트레이드 수행
+        if (!inputReader.next().equals("y")) {
+            System.out.println("== Trade cancelled ==");
+            return;
+        }
+        tgTrainer.capturedPokemonList.set(choiceTg, myPokemon);
+        this.capturedPokemonList.set(choiceMine, tgPokemon);
+        // 4. 특수 이벤트 트리거
+        if (tgPokemon instanceof MysticPokemon myMystic) {
+            this.capturedPokemonList.set(choiceMine,
+                myMystic.getMysticAction().triggerMysticAction(myMystic)
+            );
+        }
+        if (myPokemon instanceof MysticPokemon tgMystic) {
+            tgTrainer.capturedPokemonList.set(choiceTg,
+                tgMystic.getMysticAction().triggerMysticAction(tgMystic)
+            );
+        }
+        System.out.println("== Trade complete! ==");
+        System.out.println("my pokemon list: " + this.capturedPokemonList);
+        System.out.println("tg pokemon list: " + tgTrainer.capturedPokemonList);
     }
 
     public void crossOcean(String tgCity) {

@@ -13,4 +13,10 @@ public class EvolvedPokemon extends Pokemon
     public EvolvedPokemon(String pokemonName, String customName, int HP, PokeDex.PokeCategory pokeCategory) {
         super(pokemonName, customName, HP, pokeCategory);
     }
+
+    protected EvolvedPokemon fromDex() {
+        return new EvolvedPokemon(
+            this.getPokemonName(), this.getCustomName(), this.getHP(), this.getPokeCategory()
+        );
+    }
 }

@@ -15,15 +15,11 @@ public class GameLauncher {
         Trainer trainer2 = new Trainer("Opponent", moonHill);
         // 1-3. 소지 포켓몬 (Normal, Fly-Legendary, Moon, Mystic)
         Pokemon[] trainer1Pokemon = {
-            new Pokemon("삐삐", "내삐삐", 10, PokeDex.PokeCategory.MOON),
-            new Pokemon("푸린", "내푸린", 10, PokeDex.PokeCategory.MOON),
-            new FlyPokemon("팔색조", "내팔색조", 10, PokeDex.PokeCategory.LEGENDARY)
+            new MysticPokemon("근육몬", "내신비의근육몬", 10, PokeDex.PokeCategory.MYSTIC)
         };
         trainer1.addPokemon(trainer1Pokemon);
         Pokemon[] trainer2Pokemon = {
-            new Pokemon("삐삐", "니삐삐", 10, PokeDex.PokeCategory.MOON),
-            new Pokemon("푸린", "니푸린", 10, PokeDex.PokeCategory.MOON),
-            new FlyPokemon("팔색조", "니팔색조", 10, PokeDex.PokeCategory.LEGENDARY)
+            new MysticPokemon("폴리곤", "니신비의폴리곤", 10, PokeDex.PokeCategory.MYSTIC)
         };
         trainer2.addPokemon(trainer2Pokemon);
 
@@ -31,10 +27,7 @@ public class GameLauncher {
         // 대륙 간 횡단을 통해 달맞이 동산으로 이동
 
         // Scenario 2
-        // 대륙 간 횡단을 통해 달맞이 동산으로 이동
-        trainer1.crossOcean("태초마을");
-        trainer2.crossOcean("어둠시티");
-
-
+        // 트레이드 수행 시 신비의 포켓몬이 신비한 동작 수행
+        trainer1.trade(trainer2);
     }
 }
